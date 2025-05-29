@@ -3,12 +3,11 @@ public class ArvoreRubroNegra {
 
     public void inserir(int valor) {
         No novo = new No(valor);
-        novo.cor = true; // Vermelho
+        novo.cor = true;
 
         raiz = inserirRecursivo(raiz, novo);
         balancearAposInsercao(novo);
 
-        // A raiz sempre deve ser preta
         raiz.cor = false;
     }
 
@@ -35,18 +34,15 @@ public class ArvoreRubroNegra {
                 No tio = avo.direita;
 
                 if (tio != null && tio.cor) {
-                    // Caso 1: Tio é vermelho
                     no.pai.cor = false;
                     tio.cor = false;
                     avo.cor = true;
                     no = avo;
                 } else {
                     if (no == no.pai.direita) {
-                        // Caso 2: no é filho direito
                         no = no.pai;
                         rotacaoEsquerda(no);
                     }
-                    // Caso 3: no é filho esquerdo
                     no.pai.cor = false;
                     avo.cor = true;
                     rotacaoDireita(avo);
@@ -55,18 +51,15 @@ public class ArvoreRubroNegra {
                 No tio = avo.esquerda;
 
                 if (tio != null && tio.cor) {
-                    // Caso 1: Tio é vermelho
                     no.pai.cor = false;
                     tio.cor = false;
                     avo.cor = true;
                     no = avo;
                 } else {
                     if (no == no.pai.esquerda) {
-                        // Caso 2: no é filho esquerdo
                         no = no.pai;
                         rotacaoDireita(no);
                     }
-                    // Caso 3: no é filho direito
                     no.pai.cor = false;
                     avo.cor = true;
                     rotacaoEsquerda(avo);
